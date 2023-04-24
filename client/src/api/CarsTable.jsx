@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
 import Header from '../components/Header';
+import axios from 'axios'
 
 function UsersTable() {
   const [users, setUsers] = useState([]);
   const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 
   useEffect(() => {
-    fetch(`${BASE_URL}/api/cars`)
-      .then((res) => res.json())
-      .then((data) => setUsers(data));
+    axios.get(`${BASE_URL}/api/cars`).then((response) => {
+      setUsers(response.data);
+    });
   }, []);
+
+  if (!users) return null;
 
   return (
     <>

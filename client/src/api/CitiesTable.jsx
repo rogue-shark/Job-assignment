@@ -1,29 +1,40 @@
 import { useEffect, useState } from 'react';
 import Header from '../components/Header';
+import axios from 'axios'
 
 function UsersTable() {
   const [users, setUsers] = useState([]);
   const BASE_URL = import.meta.env.VITE_APP_BASE_URL
 
   useEffect(() => {
-    fetch(`${BASE_URL}/api/cities`)
-      .then(res => res.json())
-      .then(data => setUsers(data));
+    axios.get(`${BASE_URL}/api/cities`).then((response) => {
+      setUsers(response.data);
+    });
   }, []);
+
+  if (!users) return null;
+
+  function roundedString (numString) {
+    return `$${Number(numString).toFixed(2)}`
+  }
 
   return (
     <>
-    <Header text='Top 10 Cities Table' />
+    <Header text='Top 10 Cities Table' condition='Show the data of top 10 cities which have the highest number of users and their average income.' />
     <table>
       <thead>
         <tr>
           <th>Name</th>
+          <th>No. of users</th>
+          <th>Avg Income</th>
         </tr>
       </thead>
       <tbody>
         {users.map(user => (
           <tr key={user._id}>
             <td>{user._id}</td>
+            <td>{user.count}</td>
+            <td>{roundedString(user.avg_income)}</td>
           </tr>
         ))}
       </tbody>

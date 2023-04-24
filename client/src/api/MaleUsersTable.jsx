@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
 import Header from '../components/Header';
+import axios from 'axios'
 
 function UsersTable() {
   const [users, setUsers] = useState([]);
   const BASE_URL = import.meta.env.VITE_APP_BASE_URL
 
   useEffect(() => {
-    fetch(`${BASE_URL}/api/male-users`)
-      .then(res => res.json())
-      .then(data => setUsers(data));
+    axios.get(`${BASE_URL}/api/male-users`).then((response) => {
+      setUsers(response.data);
+    });
   }, []);
+
+  if (!users) return null;
 
   const numberWithCommas = (num) => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -32,7 +35,7 @@ function UsersTable() {
           <tr key={user._id}>
             <td>{`${user.first_name} ${user.last_name}`}</td>
             <td>{user.email}</td>
-            <td>{user.income}</td>
+            <td>{`$${user.income}`}</td>
             <td>{numberWithCommas(user.phone_price)}</td>
           </tr>
         ))}

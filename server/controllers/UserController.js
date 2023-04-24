@@ -2,7 +2,7 @@ const UserModel = require('../models/UserModel.js');
 
 exports.getUsersWithIncomeAndCar = async (req, res) => {
   const users = await UserModel.find({
-    income: { $lt: '$5' },
+    income: { $lt: '5' },
     car: { $in: ['BMW', 'Mercedes-Benz'] },
   });
   res.send(users);
@@ -39,7 +39,7 @@ exports.getTopCitiesByUserCountAndAvgIncome = async (req, res) => {
       $group: {
         _id: '$city',
         count: { $sum: 1 },
-        avg_income: { $avg: '$income' },
+        avg_income: { $avg: { $toDouble: "$income" } },
       },
     },
     { $sort: { count: -1 } },
