@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Ysabeau:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Ysabeau', sans-serif;
+  font-weight: 700;
+}
+
+.main {
+  max-width: 1000px;
+  margin: 2rem auto 3rem auto;
+
+  height: 100%;
+}
+
+.title-text {
+  margin: 0;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 800;
+}
+.task-text {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #33026c;
+  font-weight: 600;
+}
+
+/* Style for the select element */
+select {
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 5px;
+  border: 3px solid #33026c;
+
+  position: sticky;
+  top: 10px;
+}
+
+/* Style for the table element */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 1.4rem;
+}
+
+/* Style for the table head */
+thead {
+  background-color: #33026c;
+  color: white;
+}
+
+/* Style for the table cells */
+td,
+th {
+  padding: 8px;
+  border: 1px solid #000000;
+  text-align: center;
+}
+
+/* Style for the table rows */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
