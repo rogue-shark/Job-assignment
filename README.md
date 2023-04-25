@@ -21,7 +21,7 @@ To run this project locally, you'll need to have Node.js and MongoDB installed o
 - `GET /api/male-users`: returns an array of male users with phone price greater than $10,000
 - `GET /api/quotes`: returns an array of users whose last name starts with "M" and has a quote character length greater than 15 and email includes his/her last name
 - `GET /api/cars`: returns an array of users which have a car of brand "BMW", "Mercedes" or "Audi" and whose email does not include any digit
-- `GET /api/cities/top-10-highest-users`: returns an array of top 10 cities which have the highest number of users and their average income
+- `GET /api/cities`: returns an array of top 10 cities which have the highest number of users and their average income
 
 ## Technologies Used
 

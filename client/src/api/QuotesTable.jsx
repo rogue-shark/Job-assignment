@@ -1,18 +1,30 @@
 import { useEffect, useState } from 'react';
 import Header from '../components/Header';
+import Loading from '../components/Loading';
 import axios from 'axios'
 
 function QuotesTable() {
   const [users, setUsers] = useState([]);
-  const BASE_URL = import.meta.env.VITE_APP_BASE_URL
+  const [isLoading, setIsLoading] = useState(true);
+  const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 
   useEffect(() => {
-    axios.get(`${BASE_URL}/api/quotes`).then((response) => {
-      setUsers(response.data);
-    });
+    axios.get(`${BASE_URL}/api/quotes`)
+      .then(response => {
+        setUsers(response.data);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.error(error);
+        setIsLoading(false);
+      });
   }, []);
 
   if (!users) return null;
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
